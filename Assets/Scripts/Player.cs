@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Player : MonoBehaviour
 {
+    [SerializeField]
     public const int PLAYER_LIVES = 3;
 
     private const float PLAYER_RADIUS = 0.4F;
@@ -18,10 +19,11 @@ public class Player : MonoBehaviour
 
     [Header("Bullet")]
     [SerializeField]
-    private Rigidbody bullet;
+    private BulletGameObjectPooled gun;
 
     [SerializeField]
     private Transform bulletSpawnPoint;
+
 
     [SerializeField]
     private float bulletSpeed = 3F;
@@ -61,7 +63,7 @@ public class Player : MonoBehaviour
     private bool ReachedRightBound { get => referencePointComponent >= rightCameraBound; }
     private bool ReachedLeftBound { get => referencePointComponent <= leftCameraBound; }
 
-    private bool CanShoot { get => bulletSpawnPoint != null && bullet != null; }
+    private bool CanShoot { get => bulletSpawnPoint != null && gun != null; }
 
     #endregion MovementProperties
 
@@ -100,9 +102,13 @@ public class Player : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 && CanShoot)
             {
+
+                gun.Fire();
+                /*
                 Instantiate<Rigidbody>
-                   (bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation)
+                   (gun, bulletSpawnPoint.position, bulletSpawnPoint.rotation)
                    .AddForce(transform.up * bulletSpeed, ForceMode.Impulse);
+                  */ 
             }
         }
     }

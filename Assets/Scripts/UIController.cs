@@ -30,9 +30,20 @@ public class UIController : MonoBehaviour
 
         playerRef = FindObjectOfType<Player>();
 
-        if (playerRef != null && lifeImages.Length == Player.PLAYER_LIVES)
+        if (playerRef != null )     
         {
-            InvokeRepeating("UpdateUI", 0F, tickRate);
+            Debug.Log("Entro a !=null");
+            if (lifeImages.Length == Player.PLAYER_LIVES)
+            {
+                Debug.Log("Entro a == playerRef");
+                InvokeRepeating("UpdateUI", 0F, tickRate);
+            }
+            else
+            {
+                Debug.Log("Life Images = " + lifeImages.Length);
+                Debug.Log("playerRef.Lives = " + lifeImages.Length);
+            }
+                
         }
     }
 

@@ -3,7 +3,7 @@
 public class SpawnController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] spawnObjects;
+    private GameObject[] spawnObjects;  
 
     [SerializeField]
     private float spawnRate = 1f;
